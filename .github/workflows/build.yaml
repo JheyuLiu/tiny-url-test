@@ -28,12 +28,12 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: ${{github.actor}}
-          password: ${{secrets.GITHUB_TOKEN}}
-      - name: 'Build Inventory Image'
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'Build Docker Image'
         run: |
-          docker build . --tag ghcr.io/<your-GitHub-username>/tiny-url-app:${{ steps.vars.outputs.sha_short }}
-          docker push ghcr.io/<your-GitHub-username>/tiny-url-app:${{ steps.vars.outputs.sha_short }}
+          docker build . --tag ghcr.io/${{ github.actor }}/tiny-url-app:${{ steps.vars.outputs.sha_short }}
+          docker push ghcr.io/${{ github.actor }}/tiny-url-app:${{ steps.vars.outputs.sha_short }}
       #- name: Build backend and push
       #  uses: docker/build-push-action@v3
       #  with:
